@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import {
     Link2,
     Plus,
@@ -43,11 +43,17 @@ export function InvitationSection({
         createInvitationAction,
         initialInvitationState,
     );
+    const [now, setNow] = useState<number | null>(null);
+
+    useEffect(() => {
+        setNow(Date.now());
+    }, []);
 
     const activeCount = invitations.filter(
         (invite) =>
             invite.status === "ACTIVE" &&
-            (!invite.expiresAt || invite.expiresAt.getTime() > Date.now()),
+            (!invite.expiresAt ||
+                (now !== null && invite.expiresAt.getTime() > now)),
     ).length;
 
     return (

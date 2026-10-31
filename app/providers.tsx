@@ -20,6 +20,7 @@ export function Providers({
             authClient={authClient}
             navigate={router.push}
             replace={router.replace}
+            defaultTheme="dark"
             onSessionChange={() => {
                 router.refresh();
             }}

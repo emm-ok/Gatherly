@@ -6,14 +6,14 @@ function SkeletonBlock({
     return (
         <div
             aria-hidden="true"
-            className={`animate-pulse rounded-lg bg-muted ${className}`}
+            className={`animate-pulse rounded-lg bg-gray-300 ${className}`}
         />
     );
 }
 
 function EventCardSkeleton() {
     return (
-        <div className="overflow-hidden rounded-2xl border border-border/70 bg-card">
+        <div className="overflow-hidden rounded-2xl border border-border/70 bg-gray-200">
             <SkeletonBlock className="aspect-[16/9] w-full rounded-none" />
 
             <div className="space-y-4 p-5">
@@ -52,7 +52,7 @@ export function EventsSkeleton() {
                 <SkeletonBlock className="h-11 w-full rounded-xl sm:w-36" />
             </div>
 
-            <div className="rounded-2xl border border-border/70 bg-card p-4">
+            <div className="rounded-2xl border border-border/70 bg-gray-200 p-4">
                 <div className="flex flex-col gap-3 lg:flex-row">
                     <SkeletonBlock className="h-10 flex-1 rounded-xl" />
                     <SkeletonBlock className="h-10 w-full rounded-xl sm:w-40" />

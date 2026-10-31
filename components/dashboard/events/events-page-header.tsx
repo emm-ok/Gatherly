@@ -16,7 +16,7 @@ export function EventsPageHeader({
     return (
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                <div className="flex items-center gap-2 text-sm font-medium text-secondary">
                     <CalendarRange className="size-4" />
                     Your workspace
                 </div>
@@ -25,7 +25,7 @@ export function EventsPageHeader({
                     Your events
                 </h1>
 
-                <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+                <p className="max-w-xl text-sm leading-6 text-secondary">
                     Manage your events, keep track of upcoming
                     occasions, and monitor guest responses.
                 </p>

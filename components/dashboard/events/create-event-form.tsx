@@ -134,7 +134,7 @@ export function CreateEventForm() {
                 </Link>
 
                 <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                    <div className="flex items-center gap-2 text-sm font-medium text-secondary">
                         <Sparkles className="size-4" />
                         Event planning
                     </div>
