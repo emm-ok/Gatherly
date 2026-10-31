@@ -11,3 +11,147 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+// ENUMS
+
+enum RSVPStatus {
+  GOING
+  MAYBE
+  NOT_GOING
+}
+
+enum InviteStatus {
+  ACTIVE
+  REVOKED
+}
+
+// USER MODEL
+
+model User {
+  id String @id @default(uuid()) @db.Uuid
+
+  // Neon Auth reference
+  authUserId String @unique @db.VarChar(255)
+
+  name String? @db.VarChar(120)
+
+  email String @db.VarChar(320)
+
+  // Lowercase, trimmed email for uniqueness
+  emailNormalized String @unique @db.VarChar(320)
+
+  // Relationships
+  events Event[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  @@map("users")
+}
+
+// EVENT MODEL
+
+model Event {
+  id String @id @default(uuid()) @db.Uuid
+
+  // Event information
+  title String @db.VarChar(160)
+
+  description String @db.VarChar(5000)
+
+  location String @db.VarChar(300)
+
+  eventDate DateTime @db.Timestamptz(3)
+
+  // Optional image information
+  imageUrl String? @db.Text
+
+  imagePublicId String? @db.VarChar(255)
+
+  // Event creator
+  createdById String @db.Uuid
+
+  createdBy User @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  // Relationships
+  invites EventInvite[]
+
+  rsvps EventRsvp[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  // Query optimization
+  @@index([createdById, createdAt])
+  @@index([createdById, eventDate])
+  @@map("events")
+}
+
+// EVENT INVITE MODEL
+
+model EventInvite {
+  id String @id @default(uuid()) @db.Uuid
+
+  // Associated event
+  eventId String @db.Uuid
+
+  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  // Hashed invitation token
+  tokenHash String @unique @db.Char(64)
+
+  // Invitation management
+  status InviteStatus @default(ACTIVE)
+
+  expiresAt DateTime? @db.Timestamptz(3)
+
+  revokedAt DateTime? @db.Timestamptz(3)
+
+  // Relationships
+  rsvps EventRsvp[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  // Query optimization
+  @@index([eventId, status, createdAt])
+  @@index([expiresAt])
+  @@map("event_invites")
+}
+
+// EVENT RSVP MODEL
+
+model EventRsvp {
+  id String @id @default(uuid()) @db.Uuid
+
+  // Guest information
+  name String @db.VarChar(120)
+
+  email String @db.VarChar(320)
+
+  emailNormalized String @db.VarChar(320)
+
+  // RSVP response
+  status RSVPStatus
+
+  // Associated event
+  eventId String @db.Uuid
+
+  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  // Originating invitation
+  inviteId String? @db.Uuid
+
+  invite EventInvite? @relation(fields: [inviteId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  // Prevent duplicate RSVPs for the same event
+  @@unique([eventId, emailNormalized])
+  // Query optimization
+  @@index([eventId, status, createdAt])
+  @@index([eventId, createdAt])
+  @@index([inviteId])
+  @@map("event_rsvps")
+}
