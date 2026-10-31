@@ -15,12 +15,12 @@ export function EventsEmptyState({
 }: EventsEmptyStateProps) {
     if (hasFilters) {
         return (
-            <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/20 px-5 py-12 text-center">
+            <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-dashed border-border px-5 py-12 text-center">
                 <div className="mb-4 flex size-12 items-center justify-center rounded-2xl bg-muted">
                     <SearchX className="size-5 text-muted-foreground" />
                 </div>
 
-                <h2 className="text-base font-semibold">
+                <h2 className="text-black font-semibold">
                     No matching events
                 </h2>
 
