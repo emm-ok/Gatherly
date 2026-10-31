@@ -124,8 +124,16 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-plus-jakarta), sans-serif;
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
   }
+}
+html {
+  scroll-behavior: smooth;
+}
+section[id] {
+  scroll-margin-top: 100px;
 }

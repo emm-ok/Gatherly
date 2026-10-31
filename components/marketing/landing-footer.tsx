@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CalendarDays, ArrowUpRight } from "lucide-react";
+import { CurrentYear } from "./current-year";
 
 const footerLinks = [
     {
@@ -79,7 +80,7 @@ export function LandingFooter() {
 
                 <div className="flex flex-col gap-3 border-t border-slate-200 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
                     <p>
-                        © {new Date().getFullYear()} Gatherly. All rights
+                        © <CurrentYear /> Gatherly. All rights
                         reserved.
                     </p>
 

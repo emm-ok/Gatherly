@@ -1,7 +1,7 @@
 import { AuthView } from "@neondatabase/auth-ui";
 import { authViewPaths } from "@neondatabase/auth-ui/server";
 
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 export function generateStaticParams() {
     return Object.values(authViewPaths).map((path) => ({
