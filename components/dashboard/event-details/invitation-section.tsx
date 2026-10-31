@@ -11,7 +11,6 @@ import {
 
 import {
     createInvitationAction,
-    initialInvitationState,
 } from "@/actions/event-details.actions";
 
 import type { InvitationRecord } from "@/lib/events/event-details.types";
@@ -23,6 +22,18 @@ interface InvitationSectionProps {
     eventId: string;
     invitations: InvitationRecord[];
 }
+
+interface CreateInvitationState {
+    status: "idle" | "success" | "error";
+    message: string;
+    inviteUrl?: string;
+    invitationId?: string;
+}
+
+const initialInvitationState: CreateInvitationState = {
+    status: "idle",
+    message: "",
+};
 
 export function InvitationSection({
     eventId,

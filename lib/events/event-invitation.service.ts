@@ -29,6 +29,8 @@ export async function createEventInvitation(
     userId: string,
     eventId: string,
 ) {
+    const appUrl = getAppUrl()
+
     const event = await prisma.event.findFirst({
         where: {
             id: eventId,
@@ -59,7 +61,7 @@ export async function createEventInvitation(
         },
     });
 
-    const inviteUrl = `${getAppUrl()}/invite/${token}`;
+    const inviteUrl = `${appUrl}/invite/${token}`;
 
     return {
         invitation,

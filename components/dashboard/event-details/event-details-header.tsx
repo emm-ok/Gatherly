@@ -30,14 +30,6 @@ export function EventDetailsHeader({
                     Manage event information, guests, and invitations.
                 </p>
             </div>
-
-            <Link
-                href={`/invite-preview/${eventId}`}
-                className="inline-flex h-10 items-center justify-center gap-2 self-start rounded-xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 sm:self-auto"
-            >
-                Preview event
-                <ExternalLink size={15} />
-            </Link>
         </div>
     );
 }

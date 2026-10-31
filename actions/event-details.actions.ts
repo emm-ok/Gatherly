@@ -15,11 +15,6 @@ export interface CreateInvitationState {
     invitationId?: string;
 }
 
-export const initialInvitationState: CreateInvitationState = {
-    status: "idle",
-    message: "",
-};
-
 export async function createInvitationAction(
     _previousState: CreateInvitationState,
     formData: FormData,

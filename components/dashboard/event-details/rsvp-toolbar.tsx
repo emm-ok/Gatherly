@@ -13,7 +13,6 @@ interface RSVPToolbarProps {
 }
 
 export function RSVPToolbar({
-    eventId,
     filters,
 }: RSVPToolbarProps) {
     const router = useRouter();
