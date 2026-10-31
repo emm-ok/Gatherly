@@ -127,7 +127,7 @@ export function CreateEventForm() {
             <div className="mb-7">
                 <Link
                     href="/dashboard"
-                    className="mb-5 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="mb-5 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors"
                 >
                     <ArrowLeft className="size-4" />
                     Back to dashboard
@@ -151,7 +151,7 @@ export function CreateEventForm() {
                 </div>
             </div>
 
-            {true && (
+            {state.message && (
                 <div
                     role="alert"
                     className="mb-6 flex gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
