@@ -1,9 +1,3 @@
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
 
 import type { DashboardOverviewData } from "@/lib/dashboard/dashboard.service";
 
@@ -38,23 +32,26 @@ export function AttendanceSummary({
     ];
 
     return (
-        <Card className="rounded-2xl border-slate-200/80 bg-white shadow-none">
-            <CardHeader className="pb-2">
-                <CardTitle className="text-base font-semibold text-slate-950">
+        <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-none sm:p-6">
+            {/* Header */}
+            <div className="pb-2">
+                <h2 className="text-base font-semibold tracking-tight text-slate-950">
                     Attendance overview
-                </CardTitle>
+                </h2>
 
-                <p className="text-xs text-slate-500">
+                <p className="mt-1 text-xs text-slate-500">
                     Guest response distribution across your events
                 </p>
-            </CardHeader>
+            </div>
 
-            <CardContent className="pt-4">
+            {/* Total responses */}
+            <div className="pt-4">
                 <div className="flex items-end justify-between gap-3">
                     <div>
                         <p className="text-3xl font-semibold tracking-tight text-slate-950 tabular-nums">
                             {total.toLocaleString()}
                         </p>
+
                         <p className="mt-1 text-xs text-slate-500">
                             Total responses
                         </p>
@@ -65,8 +62,9 @@ export function AttendanceSummary({
                     </span>
                 </div>
 
+                {/* Attendance distribution bar */}
                 <div
-                    className="mt-6 flex h-2.5 overflow-hidden rounded-full bg-slate-100"
+                    className="mt-6 flex h-2.5 w-full overflow-hidden rounded-full bg-slate-100"
                     role="img"
                     aria-label={`${stats.going} going, ${stats.maybe} maybe, and ${stats.notGoing} not going out of ${total} guest responses`}
                 >
@@ -84,6 +82,7 @@ export function AttendanceSummary({
                     })}
                 </div>
 
+                {/* Attendance breakdown */}
                 <div className="mt-6 space-y-4">
                     {attendance.map((item) => {
                         const percentage =
@@ -98,7 +97,7 @@ export function AttendanceSummary({
                             >
                                 <div className="flex items-center gap-2.5">
                                     <span
-                                        className={`size-2 rounded-full ${item.color}`}
+                                        className={`size-2 shrink-0 rounded-full ${item.color}`}
                                     />
 
                                     <span className="text-sm text-slate-600">
@@ -107,21 +106,21 @@ export function AttendanceSummary({
                                 </div>
 
                                 <div className="flex items-center gap-4">
-                                    <span className="text-xs text-slate-400">
+                                    <span className="text-xs text-slate-400 tabular-nums">
                                         {percentage}%
                                     </span>
 
                                     <span
                                         className={`w-8 text-right text-sm font-semibold tabular-nums ${item.textColor}`}
                                     >
-                                        {item.value}
+                                        {item.value.toLocaleString()}
                                     </span>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
-            </CardContent>
-        </Card>
+            </div>
+        </section>
     );
 }
