@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import {
     CalendarClock,
     CheckCircle2,
@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import type { InvitationRecord } from "@/lib/events/event-details.types";
 import { revokeInvitationAction } from "@/actions/event-details.actions";
 import { RevokeInvitationDialog } from "./revoke-invitation-dialog";
+import { CopyInviteLink } from "./copy-invite-link";
 
 interface InvitationItemProps {
     eventId: string;
@@ -34,6 +35,7 @@ export function InvitationItem({
 }: InvitationItemProps) {
     const router = useRouter();
 
+    const [now, setNow] = useState<number | null>(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [feedback, setFeedback] = useState("");
     const [feedbackType, setFeedbackType] = useState<
@@ -41,9 +43,14 @@ export function InvitationItem({
     >(null);
     const [isPending, startTransition] = useTransition();
 
+    useEffect(() => {
+        setNow(Date.now());
+    }, []);
+
     const isExpired =
         invitation.expiresAt !== null &&
-        invitation.expiresAt.getTime() <= Date.now();
+        now !== null &&
+        invitation.expiresAt.getTime() <= now;
 
     const isActive =
         invitation.status === "ACTIVE" && !isExpired;
@@ -80,6 +87,7 @@ export function InvitationItem({
                         <p className="mt-0.5 text-[11px] text-slate-400">
                             Created {formatDate(invitation.createdAt)}
                         </p>
+                        {/* <CopyInviteLink inviteUrl={invitation.inviteUrl} /> */}
                     </div>
                 </div>
 
