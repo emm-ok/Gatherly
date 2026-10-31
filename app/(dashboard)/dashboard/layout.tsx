@@ -6,7 +6,7 @@ import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { requireAuthenticatedUser } from "@/lib/auth/auth.service";
 import { AuthenticationError } from "@/lib/auth/auth.errors";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default function DashboardLayout({
     children,
