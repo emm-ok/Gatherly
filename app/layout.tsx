@@ -4,6 +4,7 @@ import { Providers } from "./providers";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Providers>
           {children}
         </Providers>
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );
