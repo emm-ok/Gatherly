@@ -20,7 +20,7 @@ type EventsFiltersProps = {
 };
 
 const selectClass =
-    "h-10 w-full appearance-none rounded-xl border border-border bg-background px-3.5 pr-9 text-sm text-foreground outline-none transition-colors hover:border-border/90 focus:border-primary focus:ring-2 focus:ring-primary/10 sm:w-44";
+    "h-10 w-full appearance-none rounded-xl border border-border px-3.5 pr-9 text-sm text-black outline-none transition-colors hover:border-border/90 focus:border-primary focus:ring-2 focus:ring-primary/10 sm:w-44 shadow-sm";
 
 export function EventsFilters({
     search,
@@ -76,7 +76,7 @@ export function EventsFilters({
         sort !== "newest";
 
     return (
-        <div className="rounded-2xl border border-border/70 bg-card p-4 shadow-sm">
+        <div className="rounded-2xl border border-border/70 p-4 shadow-sm">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
                 <form
                     onSubmit={handleSearchSubmit}
@@ -91,7 +91,7 @@ export function EventsFilters({
                             setSearchValue(event.target.value)
                         }
                         placeholder="Search by event name or location..."
-                        className="h-10 w-full rounded-xl border border-border bg-background pl-10 pr-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 hover:border-border/90 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                        className="h-10 w-full rounded-xl border border-border pl-10 pr-3 text-sm outline-none transition-colors text-black placeholder:text-muted-foreground/70 hover:border-border/90 focus:border-primary focus:ring-2 focus:ring-primary/10"
                     />
                 </form>
 
