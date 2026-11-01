@@ -14,7 +14,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 
 export const metadata: Metadata = {
-  title: "Eventra",
+  title: "Gatherly",
   description: "Plan, organize and manage your events.",
 };
 
